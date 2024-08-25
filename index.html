@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天気に合わせた服装提案アプリ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .location {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .weather-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .temperature {
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    .weather-icon {
+      font-size: 3em;
+    }
+
+    .clothing-suggestion {
+      background-color: #e6f3ff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .clothing-image {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .clothing-image img {
+      max-width: 200px;
+      height: auto;
+    }
+
+    .additional-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .info-item {
+      text-align: center;
+      flex: 1;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      flex: 1;
+      margin: 0 5px;
+    }
+
+    .tabs {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      background-color: #e0e0e0;
+      cursor: pointer;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .tab.active {
+      background-color: white;
+      font-weight: bold;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="tabs">
+      <div class="tab active" data-tab="tab1">8/25 (日)</div>
+      <div class="tab" data-tab="tab2">8/26 (月)</div>
+    </div>
+
+    <div id="tab1" class="tab-content active">
+      <div class="header">
+        <div class="location">横浜市中区</div>
+        <div>8月25日 (日)</div>
+      </div>
+      <div class="weather-info">
+        <div class="temperature">34°C</div>
+        <div class="weather-icon">🌙</div>
+      </div>
+      <div class="clothing-suggestion">
+        <p>軽やかな半袖シャツにショートパンツ、快適なサンダルがオススメです。帽子も忘れずに！</p>
+      </div>
+      <div class="clothing-image">
+        <img src="images/スクリーンショット 2024-08-25 212635.png" alt="服装提案">
+      </div>
+      <div class="additional-info">
+        <div class="info-item">
+          <div>最低気温</div>
+          <div>27°C</div>
+        </div>
+        <div class="info-item">
+          <div>最高気温</div>
+          <div>34°C</div>
+        </div>
+        <div class="info-item">
+          <div>降水確率</div>
+          <div>40%</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab2" class="tab-content">
+      <div class="header">
+        <div class="location">横浜市中区</div>
+        <div>8月26日 (月)</div>
+      </div>
+      <div class="weather-info">
+        <div class="temperature">30°C</div>
+        <div class="weather-icon">🌦️</div>
+      </div>
+      <div class="clothing-suggestion">
+        <p>半袖シャツに軽めのパンツ、折りたたみ傘も持ち歩くと安心です。</p>
+      </div>
+      <div class="clothing-image">
+        <img src="images/スクリーンショット 2024-08-25 222047.png" alt="服装提案">
+      </div>
+      <div class="additional-info">
+        <div class="info-item">
+          <div>最低気温</div>
+          <div>27°C</div>
+        </div>
+        <div class="info-item">
+          <div>最高気温</div>
+          <div>34°C</div>
+        </div>
+        <div class="info-item">
+          <div>降水確率</div>
+          <div>50%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="button">真夏の涼しい服</button>
+      <button class="button">あると安心</button>
+      <button class="button">猛烈に暑い</button>
+    </div>
+  </div>
+
+  <script>
+    // タブ切り替え機能
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+        this.classList.add('active');
+        document.getElementById(this.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ボタンクリック時のアラート
+    document.querySelectorAll('.button').forEach(button => {
+      button.addEventListener('click', function () {
+        alert('この機能は開発中です。');
+      });
+    });
+  </script>
+</body>
+
+</html>
